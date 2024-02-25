@@ -102,5 +102,5 @@ pub fn print(){
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer)}
     };
 
-    write!(wr,"We are writing {} and {}",42, 1.30/21).unwrap();
+    write!(wr,"We are writing {} and {}",42, 1.30/2.1).unwrap();
 }
