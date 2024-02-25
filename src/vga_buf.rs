@@ -94,5 +94,5 @@ pub fn print(){
 
     wr.write_byte(b'H');
     wr.write_str("ELLO ");
-    wr.write_str("W^orld!");
+    wr.write_str("Wôrld!");
 }
