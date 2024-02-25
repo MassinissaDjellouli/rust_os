@@ -9,10 +9,12 @@ use core::panic::PanicInfo;
 pub extern "C" fn _start() -> ! {
     use core::fmt::Write;
     println!("Test TEst {}",24);
+    panic!("TESTEST");
     loop {}
 }
 
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> !{
+    println!("{}",_info);
     loop{}
 }
