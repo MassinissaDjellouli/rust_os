@@ -85,6 +85,15 @@ impl Writer {
 
     }
 }
+use core::fmt
+use core::fmt::Arguments;
+
+impl fmt::Write for Writer {
+    fn write_str(&mut self, s: &str) -> fmt::Result {
+        self.write_str(s);
+        Ok(())
+    }
+}
 
 pub fn print(){
     let mut wr =  Writer {
@@ -93,7 +102,5 @@ pub fn print(){
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer)}
     };
 
-    wr.write_byte(b'H');
-    wr.write_str("ELLO ");
-    wr.write_str("Wôrld!");
+    write!(wr,"We are writing {} and {}",42, 1.30/21).unwrap();
 }
