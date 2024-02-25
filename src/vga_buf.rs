@@ -97,7 +97,7 @@ impl Writer {
             color:self.color_code
         };
         for col in 0..BUFFER_WIDTH{
-            self.buffer[row][col].write(blank);
+            self.buffer.chars[row][col].write(blank);
         }
     }
 }
