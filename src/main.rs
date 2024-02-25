@@ -4,13 +4,13 @@
 mod vga_buf;
 
 use core::panic::PanicInfo;
-use crate::vga_buf::WRITER;
+use crate::print;
+use crate::println;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     use core::fmt::Write;
-
-    WRITER.lock().write_str("Hello everynyanssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssseverynyanssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssseverynyanssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssseverynyanssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssseverynyanssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssseverynyanssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssseverynyansssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss:").unwrap();
+    println!("Test TEst {}",24);
     loop {}
 }
 

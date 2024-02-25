@@ -66,7 +66,7 @@ impl Writer {
             b'\n' => self.new_line(),
             byte => {
                 if self.column_position > BUFFER_WIDTH {
-                    self.new_line()
+                    self.new_line();
                 }
 
                 let row = BUFFER_HEIGHT - 1;
@@ -102,6 +102,7 @@ impl Writer {
     }
 }
 use core::fmt;
+use core::fmt::Write;
 use lazy_static::lazy_static;
 
 impl fmt::Write for Writer {
@@ -118,4 +119,22 @@ lazy_static!{
         color_code:ColorCode::new(Color::Green as u8,Color::Black as u8),
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer)}
     });
+}
+
+
+#[macro_export]
+macro_rules! print {
+    ($($arg: tt)*) => ($crate::vga_buf::_print(format_args!($($arg)*)));
+}
+
+#[macro_export]
+macro_rules! println {
+    () => {$crate::print!("\n")};
+    ($($arg: tt)*) => ($crate::print!("{}\n", format_args!($($arg)*)))
+}
+
+#[doc(hidden)]
+pub fn _print(args:fmt::Arguments){
+    use core::fmt::Write;
+    WRITER.lock().write_fmt(args).unwrap()
 }
