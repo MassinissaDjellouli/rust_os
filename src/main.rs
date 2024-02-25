@@ -10,7 +10,7 @@ use crate::vga_buf::WRITER;
 pub extern "C" fn _start() -> ! {
     use core::fmt::Write;
 
-    write!(WRITER.lock(),"Hello everynyan:\n {}",true).unwrap();
+    write!(WRITER.lock(),"Hello everynyan:\n{}",true).unwrap();
     loop {}
 }
 
