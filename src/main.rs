@@ -10,7 +10,7 @@ pub extern "C" fn _start() -> ! {
     for (i, &byte) in OUTPUT.iter().enumerate() {
         unsafe {
             *vga_buf.offset(i as isize * 2) = byte;
-            *vga_buf.offset(i as isize * 2 + 1) = 0xb3;
+            *vga_buf.offset(i as isize * 2 + 1) = 0xb2;
         }
     }
 
