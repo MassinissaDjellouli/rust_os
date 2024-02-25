@@ -8,7 +8,6 @@ use core::panic::PanicInfo;
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     use core::fmt::Write;
-    panic!("Some panic msg");
     loop {}
 }
 
