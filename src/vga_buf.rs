@@ -85,7 +85,7 @@ impl Writer {
 
     }
 }
-use core::fmt
+use core::fmt;
 use core::fmt::Arguments;
 
 impl fmt::Write for Writer {
@@ -96,6 +96,7 @@ impl fmt::Write for Writer {
 }
 
 pub fn print(){
+    use core::fmt::Write;
     let mut wr =  Writer {
         column_position:0,
         color_code:ColorCode::new(Color::Green as u8,Color::Black as u8),
