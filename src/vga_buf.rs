@@ -88,7 +88,7 @@ impl Writer {
 pub fn print(){
     let mut wr =  Writer {
         column_position:0,
-        color_code:ColorCode::new(Color::White as u8,Color::Black as u8),
+        color_code:ColorCode::new(Color::Green as u8,Color::Black as u8),
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer)}
     };
 
