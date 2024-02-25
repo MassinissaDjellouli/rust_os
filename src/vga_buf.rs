@@ -86,7 +86,6 @@ impl Writer {
     }
 }
 use core::fmt;
-use core::fmt::Arguments;
 
 impl fmt::Write for Writer {
     fn write_str(&mut self, s: &str) -> fmt::Result {
