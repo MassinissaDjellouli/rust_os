@@ -4,10 +4,13 @@
 mod vga_buf;
 
 use core::panic::PanicInfo;
+use crate::vga_buf::WRITER;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    vga_buf::print();
+    use core::fmt::Write;
+
+    write!(WRITER.lock(),"Hello everynyan: {}",true).unwrap();
     loop {}
 }
 
