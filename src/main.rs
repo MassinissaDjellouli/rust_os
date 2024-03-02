@@ -7,7 +7,7 @@
 fn test_runner(tests: &[&dyn Testable]){
     serial_println!("Running {} tests",tests.len());
     for test in tests{
-        test();
+        test.run();
     }
     exit_qemu(Success);
 }
@@ -45,23 +45,21 @@ impl<T> Testable for T
     fn run(&self) {
         serial_print!("{}...\t", core::any::type_name::<T>());
         self();
-        serial_println!("[ok]");
+        serial_println!("{}","[ok]");
     }
 }
 
 #[panic_handler]
 #[cfg(test)]
 fn panic(info: &PanicInfo) -> !{
-    serial_println!("[failed]");
-    serial_println!("Error: {info}");
+    serial_println!("{}","[failed]");
+    serial_println!("Error: {}",info);
     exit_qemu(Failed);
     loop{}
 }
 #[test_case]
 fn trivial_assertion(){
-    serial_print!("trivial assertion... ");
     assert_eq!(0,1);
-    serial_println!("[ok]");
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
