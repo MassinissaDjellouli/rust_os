@@ -22,7 +22,7 @@ use core::panic::PanicInfo;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    serial_println!("Hello World{}", "!");
+    println!("Hello World{}", "!");
 
     #[cfg(test)]
     test_main();
@@ -37,9 +37,9 @@ fn panic(info: &PanicInfo) -> !{
 
 #[test_case]
 fn trivial_assertion(){
-    print!("trivial assertion... ");
+    serial_print!("trivial assertion... ");
     assert_eq!(1,1);
-    println!("[ok]");
+    serial_println!("[ok]");
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
