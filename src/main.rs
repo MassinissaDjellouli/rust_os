@@ -5,7 +5,7 @@
 #![reexport_test_harness_main = "test_main"]
 #[cfg(test)]
 fn test_runner(tests: &[&dyn Fn()]){
-    println!("Running {} tests",tests.len());
+    serial_println!("Running {} tests",tests.len());
     for test in tests{
         test();
     }
@@ -13,6 +13,7 @@ fn test_runner(tests: &[&dyn Fn()]){
 }
 
 mod vga_buf;
+mod serial;
 
 use core::panic::PanicInfo;
 
@@ -21,7 +22,7 @@ use core::panic::PanicInfo;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    println!("Hello World{}", "!");
+    serial_println!("Hello World{}", "!");
 
     #[cfg(test)]
     test_main();
