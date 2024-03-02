@@ -9,15 +9,14 @@ fn test_runner(tests: &[&dyn Fn()]){
     for test in tests{
         test();
     }
-    exit_qemu(QemuExitCode::Success);
+    exit_qemu(Success);
 }
 
 mod vga_buf;
 mod serial;
 
 use core::panic::PanicInfo;
-
-
+use crate::QemuExitCode::{Failed, Success};
 
 
 #[no_mangle]
@@ -30,15 +29,24 @@ pub extern "C" fn _start() -> ! {
 }
 
 #[panic_handler]
+#[cfg(not(test))]
 fn panic(info: &PanicInfo) -> !{
     println!("{info}");
     loop{}
 }
 
+#[panic_handler]
+#[cfg(test)]
+fn panic(info: &PanicInfo) -> !{
+    serial_println!("[failed]");
+    serial_println!("Error: {info}");
+    exit_qemu(Failed);
+    loop{}
+}
 #[test_case]
 fn trivial_assertion(){
     serial_print!("trivial assertion... ");
-    assert_eq!(1,1);
+    assert_eq!(0,1);
     serial_println!("[ok]");
 }
 
