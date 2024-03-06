@@ -34,13 +34,10 @@ impl<T> Testable for T
 #[cfg(test)]
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    run_tests();
+    test_main();
     loop {}
 }
-#[cfg(test)]
-fn run_tests(){
-    test_main();
-}
+
 #[panic_handler]
 #[cfg(test)]
 fn panic(info: &PanicInfo) -> !{
@@ -48,7 +45,7 @@ fn panic(info: &PanicInfo) -> !{
 }
 
 #[cfg(test)]
-fn test_panic_handler(info: &PanicInfo) -> !{
+pub fn test_panic_handler(info: &PanicInfo) -> !{
     serial_println!("[failed]\n");
     serial_println!("Error: {}\n",info);
     exit_qemu(QemuExitCode::Failed);
