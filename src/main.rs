@@ -6,6 +6,7 @@
 
 
 use core::panic::PanicInfo;
+use rust_os::println;
 
 
 #[no_mangle]
