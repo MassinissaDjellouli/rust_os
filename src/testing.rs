@@ -9,8 +9,9 @@ pub fn test_runner(tests: &[&dyn Testable]){
 }
 
 use core::panic::PanicInfo;
-use crate::{println, serial_print, serial_println};
+use crate::{println, serial_print, serial_println, vga_buf};
 use crate::testing::QemuExitCode::Success;
+use crate::vga_buf::WRITER;
 
 pub trait Testable {
     fn run(&self) -> ();
