@@ -27,6 +27,5 @@ macro_rules! serial_print {
 #[macro_export]
 macro_rules! serial_println {
     () => ($crate::serial_print!("\n"));
-    ($fmt:expr) => ($crate::serial_print!("{}\n",$fmt));
-    ($fmt:expr,$($arg:tt)*) => ($crate::serial_print!("{}\n",format_args!($($arg)*)));
+    ($($arg: tt)*) => ($crate::print!("{}\n", format_args!($($arg)*)))
 }
