@@ -1,5 +1,4 @@
-use rust_os::vga_buf::WRITER;
-
+#![test_runner(blog_os::test_runner)]
 #[test_case]
 fn testing_test_module(){
     assert_eq!(1,1);
