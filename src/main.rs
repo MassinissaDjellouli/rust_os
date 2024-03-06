@@ -4,7 +4,6 @@
 #![feature(custom_test_frameworks)]
 #![test_runner(crate::testing::test_runner)]
 
-mod lib;
 
 use core::panic::PanicInfo;
 
