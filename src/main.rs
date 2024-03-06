@@ -14,14 +14,21 @@ use core::panic::PanicInfo;
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     #[cfg(not(test))]{
-        println!("Hello World{}", "!");
+        start();
     }
     #[cfg(test)]{
-        test_main();
+        tests()
     }
     loop {}
 }
-
+#[cfg(not(test))]
+fn start(){
+    println!("Hello World{}", "!");
+}
+#[cfg(test)]
+fn tests(){
+    test_main();
+}
 #[panic_handler]
 #[cfg(not(test))]
 fn panic(info: &PanicInfo) -> !{
