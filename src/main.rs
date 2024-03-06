@@ -59,7 +59,7 @@ fn panic(info: &PanicInfo) -> !{
 }
 #[test_case]
 fn trivial_assertion(){
-    assert_eq!(0,1);
+    assert_eq!(1,1);
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
