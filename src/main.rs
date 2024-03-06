@@ -6,7 +6,7 @@
 
 mod vga_buf;
 mod serial;
-mod testing;
+mod lib;
 
 use core::panic::PanicInfo;
 

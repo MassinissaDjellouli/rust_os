@@ -1,5 +1,8 @@
-
-#[cfg(test)]
+#![no_std]
+#![cfg_attr(test, no_main)]
+#![reexport_test_harness_main = "test_main"]
+#![feature(custom_test_frameworks)]
+#![test_runner(crate::testing::test_runner)]
 pub fn test_runner(tests: &[&dyn Testable]){
     serial_println!("Running {} tests",tests.len());
     for test in tests{
@@ -8,10 +11,12 @@ pub fn test_runner(tests: &[&dyn Testable]){
     exit_qemu(Success);
 }
 
+pub mod serial;
+pub mod vga_buf;
+
 use core::panic::PanicInfo;
-use crate::{println, serial_print, serial_println, vga_buf};
-use crate::testing::QemuExitCode::Success;
-use crate::vga_buf::WRITER;
+use crate::{println, serial_print, serial_println};
+use crate::lib::QemuExitCode::Success;
 
 pub trait Testable {
     fn run(&self) -> ();
@@ -31,12 +36,16 @@ impl<T> Testable for T
 #[panic_handler]
 #[cfg(test)]
 fn panic(info: &PanicInfo) -> !{
-    serial_println!("{}","[failed]");
-    serial_println!("Error: {}",info);
+    test_panic_handler(info)
+}
+
+#[cfg(test)]
+fn test_panic_handler(info: &PanicInfo) -> !{
+    serial_println!("[failed]\n");
+    serial_println!("Error: {}\n",info);
     exit_qemu(QemuExitCode::Failed);
     loop{}
 }
-
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u32)]
