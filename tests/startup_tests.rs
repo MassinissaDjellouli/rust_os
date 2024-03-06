@@ -1,3 +1,4 @@
+#![feature(custom_test_frameworks)]
 #![test_runner(rust_os::test_runner)]
 #[test_case]
 fn testing_test_module(){
