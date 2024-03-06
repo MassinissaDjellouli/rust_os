@@ -4,8 +4,6 @@
 #![feature(custom_test_frameworks)]
 #![test_runner(crate::testing::test_runner)]
 
-mod vga_buf;
-mod serial;
 mod lib;
 
 use core::panic::PanicInfo;
