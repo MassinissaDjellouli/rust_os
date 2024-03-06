@@ -59,7 +59,7 @@ fn testing_test_module(){
 }
 #[test_case]
 fn testing_multi_line_print(){
-    for i in [0..200]{
+    for i in [0..2000]{
      println!("TEST");
     }
 }
