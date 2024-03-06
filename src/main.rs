@@ -1,9 +1,5 @@
 #![no_std]
 #![no_main]
-#![reexport_test_harness_main = "test_main"]
-#![feature(custom_test_frameworks)]
-#![test_runner(rust_os::test_runner)]
-
 
 use core::panic::PanicInfo;
 use rust_os::println;

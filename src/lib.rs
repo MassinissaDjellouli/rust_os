@@ -31,7 +31,16 @@ impl<T> Testable for T
         serial_println!("{}","[ok]");
     }
 }
-
+#[cfg(test)]
+#[no_mangle]
+pub extern "C" fn _start() -> ! {
+    run_tests();
+    loop {}
+}
+#[cfg(test)]
+fn run_tests(){
+    test_main();
+}
 #[panic_handler]
 #[cfg(test)]
 fn panic(info: &PanicInfo) -> !{
