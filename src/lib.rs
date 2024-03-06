@@ -2,7 +2,7 @@
 #![cfg_attr(test, no_main)]
 #![reexport_test_harness_main = "test_main"]
 #![feature(custom_test_frameworks)]
-#![test_runner(rust_os::test_runner)]
+#![test_runner(crate::test_runner)]
 pub fn test_runner(tests: &[&dyn Testable]){
     serial_println!("Running {} tests",tests.len());
     for test in tests{

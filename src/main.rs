@@ -2,7 +2,7 @@
 #![no_main]
 #![reexport_test_harness_main = "test_main"]
 #![feature(custom_test_frameworks)]
-#![test_runner(crate::testing::test_runner)]
+#![test_runner(rust_os::test_runner)]
 
 
 use core::panic::PanicInfo;
