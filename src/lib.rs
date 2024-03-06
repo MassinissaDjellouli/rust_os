@@ -15,7 +15,7 @@ pub mod serial;
 pub mod vga_buf;
 
 use core::panic::PanicInfo;
-use crate::lib::QemuExitCode::Success;
+use rust_os::QemuExitCode::Success;
 
 pub trait Testable {
     fn run(&self) -> ();
