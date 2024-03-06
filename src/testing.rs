@@ -9,7 +9,7 @@ pub fn test_runner(tests: &[&dyn Testable]){
 }
 
 use core::panic::PanicInfo;
-use crate::{serial_print, serial_println};
+use crate::{println, serial_print, serial_println};
 use crate::testing::QemuExitCode::Success;
 
 pub trait Testable {
@@ -35,10 +35,7 @@ fn panic(info: &PanicInfo) -> !{
     exit_qemu(QemuExitCode::Failed);
     loop{}
 }
-#[test_case]
-fn testing_test_modules(){
-    assert_eq!(1,1);
-}
+
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u32)]
@@ -52,5 +49,17 @@ pub fn exit_qemu(exit_code: QemuExitCode){
     unsafe{
         let mut port = Port::new(0xf4);
         port.write(exit_code as u32);
+    }
+}
+
+// ------------------------------------------------------------------------------ TEST CASES ------------------------------------------------------------------------------
+#[test_case]
+fn testing_test_module(){
+    assert_eq!(1,1);
+}
+#[test_case]
+fn testing_multi_line_print(){
+    for i in [0..200]{
+     println!("TEST");
     }
 }

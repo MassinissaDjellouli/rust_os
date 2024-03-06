@@ -17,7 +17,7 @@ pub extern "C" fn _start() -> ! {
         start();
     }
     #[cfg(test)]{
-        tests()
+        run_tests()
     }
     loop {}
 }
@@ -26,7 +26,7 @@ fn start(){
     println!("Hello World{}", "!");
 }
 #[cfg(test)]
-fn tests(){
+fn run_tests(){
     test_main();
 }
 #[panic_handler]
