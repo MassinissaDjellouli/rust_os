@@ -60,15 +60,3 @@ pub fn exit_qemu(exit_code: QemuExitCode){
         port.write(exit_code as u32);
     }
 }
-
-// ------------------------------------------------------------------------------ TEST CASES ------------------------------------------------------------------------------
-#[test_case]
-fn testing_test_module(){
-    assert_eq!(1,1);
-}
-#[test_case]
-fn testing_multi_line_print(){
-    for i in [0..2000]{
-     println!("TEST");
-    }
-}
