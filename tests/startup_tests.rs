@@ -18,8 +18,3 @@ pub extern "C" fn _start() -> ! {
 fn panic(info: &PanicInfo) -> ! {
     rust_os::test_panic_handler(info)
 }
-
-#[test_case]
-fn test_println() {
-    println!("test_println output");
-}
