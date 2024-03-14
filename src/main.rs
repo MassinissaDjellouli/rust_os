@@ -19,7 +19,9 @@ fn start(){
     rust_os::init();
     println!("Hello World{}", "!");
 
-    x86_64::instructions::interrupts::int3()
+    x86_64::instructions::interrupts::int3();
+
+    println!("Still running!");
 }
 #[panic_handler]
 #[cfg(not(test))]
