@@ -16,6 +16,7 @@ pub extern "C" fn _start() -> ! {
 }
 #[cfg(not(test))]
 fn start(){
+    rust_os::init();
     println!("Hello World{}", "!");
 }
 #[panic_handler]
