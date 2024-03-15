@@ -19,7 +19,9 @@ fn start(){
     rust_os::init();
     println!("Hello World{}", "!");
 
-    x86_64::instructions::interrupts::int3();
+    unsafe{
+        *(0xdeadbeef as *mut u64) = 42
+    }
 
     println!("Still running!");
 }
