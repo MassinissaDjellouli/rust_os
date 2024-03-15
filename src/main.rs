@@ -20,7 +20,7 @@ fn start(){
     println!("Hello World{}", "!");
 
     unsafe{
-        *(0xdeadbeef as *mut u64) = 42
+        *(0xdeadbeef as *mut u8) = 42
     }
 
     println!("Still running!");
