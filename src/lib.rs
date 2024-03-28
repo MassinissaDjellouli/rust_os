@@ -6,6 +6,8 @@
 #![feature(abi_x86_interrupt)]
 
 use core::panic::PanicInfo;
+pub mod gdt;
+
 
 pub mod serial;
 pub mod vga_buf;
