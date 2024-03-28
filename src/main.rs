@@ -19,10 +19,11 @@ fn start(){
     rust_os::init();
     println!("Hello World{}", "!");
 
-    unsafe{
-        *(0xdeadbeef as *mut u8) = 42
+    fn so(){
+        so()
     }
 
+    so();
     println!("Still running!");
 }
 #[panic_handler]
